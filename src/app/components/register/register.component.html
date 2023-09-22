@@ -1,0 +1,87 @@
+<div class="container">
+    <form [formGroup]="contactForm" (submit)="onSubmit()">
+        <h1>Register Form</h1>
+        <div class="d-flex">
+            <label for="firstname">FirstName</label>
+            <input type="text" id="firstname" formControlName="firstName">
+            <span *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)">
+                <span *ngIf="firstname?.errors?.['required']">
+                    firstName is required
+                </span>
+                <span *ngIf="firstname?.errors?.['minlength']">
+                    Minimum character 8
+                </span>
+                <span *ngIf="firstname?.errors?.['pattern']">
+                    /only character
+                </span>
+            </span>
+        </div>
+        <div class="d-flex">
+            <label for="secondname">SecondName</label>
+            <input type="text" id="secondname" formControlName="secondName">
+            <span *ngIf="secondname?.invalid && (secondname?.dirty || secondname?.touched)">
+                <span *ngIf="secondname?.errors?.['required']">
+                    SecondName is required
+                </span>
+                <span *ngIf="secondname?.errors?.['minlength']">
+                    Minimum character 4
+                </span>
+                <span *ngIf="secondname?.errors?.['pattern']">
+                    /only character
+                </span>
+            </span>
+
+        </div>
+        <div class="d-flex">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email">
+            <span *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                <span *ngIf="email?.errors?.['required']">
+                    Email isrequired
+                </span>
+                <span *ngIf="email?.errors?.['email']">
+                    Email is invalid
+                </span>
+            </span>
+        </div>
+        <div>
+            <div class="d-flex">
+                <label for="gender">gender</label>
+                <div>
+                <input type="radio" name="gender" id="gender" value="male" formControlName="gender"> <label for="gender">Male</label>
+                <input type="radio" name="gender" id="gender" value="female" formControlName="gender"> <label for="gender">Female</label>
+            </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="d-flex">
+                <label for="ismarried">MarriageStause</label>
+                <div>
+                    <input type="checkbox" name="ismarried" id="ismarried" formControlName="ismarried"> <label for="ismarried">Married</label>
+                </div>
+                
+            </div>
+        </div>
+        <div class="d-flex">
+            <label for="country">Country</label>
+            <select name="country" id="country" formControlName="country">
+
+                <option value="">Select</option>
+                <option value="1">USA</option>
+                <option value="2">India</option>
+                <option value="3">England</option>
+                <span *ngIf="country?.invalid && (country?.dirty || country?.touched)">
+                    <span *ngIf="country?.errors?.['required']">
+                        Countery is required
+                    </span>
+
+                </span>
+            </select>
+        </div>
+
+        <div class="btn">
+            <button type="submit" [disabled]="!contactForm.valid">submit</button>
+        </div>
+    </form>
+</div>
